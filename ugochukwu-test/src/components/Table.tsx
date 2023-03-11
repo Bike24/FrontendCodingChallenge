@@ -8,10 +8,11 @@ export interface Product {
 }
 interface Props {
   columns: string[];
-  data: Product[]
+  data: Product[];
+  onRemoveItem: (id: string) => void;
 }
 export default function TableComp(prop: Props) {
-  const { columns, data } = prop;
+  const { columns, data, onRemoveItem } = prop;
   return (
     <div className="w-full">
       <table width={"100%"} >
@@ -28,6 +29,7 @@ export default function TableComp(prop: Props) {
                 <td>{price}</td>
                 <td>{amount}</td>
                 <td>{price * amount}</td>
+                <td><p className="pointer-cursor" onClick={() => onRemoveItem(id)}>Remove</p></td>
               </tr>
             ))
           }
