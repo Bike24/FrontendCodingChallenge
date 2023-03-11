@@ -1,5 +1,5 @@
 interface Props {
-    onChangeAction: (num: string) => void,
+    onChangeAction: (num: number) => void,
     placeholder?: string;
     extraClasses?: string;
     inputType: 'number' | 'text',
@@ -9,7 +9,7 @@ export default function TextInput(props: Props) {
     const { onChangeAction, placeholder, extraClasses, inputType, value } = props;
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        onChangeAction(event.target.value);
+        onChangeAction(parseInt(event.target.value));
     }
 
     return (

@@ -3,6 +3,7 @@ import Products from './data/products.json';
 import { useDispatch } from 'react-redux';
 import { addProducts } from './app/slices/productsSlice';
 import TopComponent from './components/TopComponent';
+import CartComp from './components/CartComp';
 
 function App() {
   const dispatch = useDispatch()
@@ -14,6 +15,7 @@ function App() {
   return (
     <div>
       <TopComponent />
+      <CartComp />
     </div>
   );
 }
