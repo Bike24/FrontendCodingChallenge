@@ -10,12 +10,14 @@ export interface Product {
 }
 export interface ProductState {
   value: number,
-  products: Array<Product>
+  products: Array<Product>,
+  currentProduct?: Product
 }
 
 const initialState: ProductState = {
   value: 0,
-  products: []
+  products: [],
+  currentProduct: undefined
 }
 
 export const productsSlice = createSlice({
@@ -38,10 +40,16 @@ export const productsSlice = createSlice({
     addProducts: (state, action: PayloadAction<Product[]>) => {
         state.products = action.payload
     },
+    setCurrentProduct: (state, action: PayloadAction<string>) => {
+        const product = state.products.filter((product) => product.id === action.payload)[0];
+        if(product) {
+            state.currentProduct = product;
+        }
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount, addProducts } = productsSlice.actions
+export const { increment, decrement, incrementByAmount, addProducts, setCurrentProduct } = productsSlice.actions
 
 export default productsSlice.reducer
