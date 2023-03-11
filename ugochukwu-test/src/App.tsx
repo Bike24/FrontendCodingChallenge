@@ -1,24 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import Products from './data/products.json';
+import { useDispatch } from 'react-redux';
+import { addProducts } from './app/slices/productsSlice';
+import TopComponent from './components/TopComponent';
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    console.log('1', Products)
+    // const arr:Product[]  = [];
+    // Products.forEach(({ id, productName, maxAmount, taxRate, price }) => {
+    //   arr.push({
+    //     id,
+    //     productName,
+    //     maxAmount,
+    //     price,
+    //     taxRate
+    //   })
+    // })
+    // console.log('2', arr)
+    dispatch(addProducts(Products))
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <TopComponent />
     </div>
   );
 }
