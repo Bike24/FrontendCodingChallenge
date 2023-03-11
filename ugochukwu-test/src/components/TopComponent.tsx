@@ -17,6 +17,7 @@ interface Options {
 export default function TopComponent() {
     const dispatch = useDispatch();
     const { currentProduct, products } = useSelector((state: RootState) => state.products);
+    const cart = useSelector((state: RootState) => state.cart);
     const [amount, setAmount] = useState<number>(0);
     const [total, setTotal] = useState<number>(0);
     const [warning, setWarning] = useState<string>('');
@@ -48,6 +49,9 @@ export default function TopComponent() {
     }
 
     const addToCart = () => {
+        if(cart.products.length === 10) {
+            alert('You can only add a maximum of 10 items to the cart')
+        }
         if (currentProduct && amount > 0 && amount <= currentProduct.maxAmount) {
             dispatch(addProductToCart({ ...currentProduct, amount: amount }))
         }
