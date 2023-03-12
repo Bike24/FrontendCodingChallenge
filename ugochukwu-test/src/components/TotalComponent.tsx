@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { clearCart } from '../app/slices/cartSlice';
 import type { RootState } from '../app/store';
 import CompletionBar from "./CompletionBar";
+import CardComp from "./Card";
 
 export default function TotalComponent() {
     const dispatch = useDispatch();
@@ -23,7 +24,10 @@ export default function TotalComponent() {
         setTotal(amount);
 
         //Calculate percentage completion
-        const percentCompletion = (numberOfProducts / 10) * 100;
+        let percentCompletion = (numberOfProducts / 10) * 100;
+        if(percentCompletion > 100) {
+            percentCompletion = 100;
+        }
         setCompletion(percentCompletion);
     }
 
@@ -36,15 +40,17 @@ export default function TotalComponent() {
     }, [products])
 
     return (
-        <div className='border-2 mx-96 my-5 p-12 pb-5'>
-            <p className="text-right">{total}</p>
-            <div className="flex flex-row justify-between">
+        <CardComp>
+            <p className="text-right">${total.toFixed(2)}</p>
+            <div className="flex flex-row">
                 <ButtonComp onClickAction={clearCartFunction} label='Clear cart' type="default" extraClasses='h-12 w-fit mt-3' />
-                <div className="flex flex-row">
-                    <CompletionBar completed={completion} />
+                <div className="flex flex-row w-full">
+                    <div className="w-48 m-5 ml-auto">
+                        <CompletionBar completed={completion} />
+                    </div>
                     <ButtonComp onClickAction={clearCartFunction} label='Buy' type="primary" extraClasses='h-12 w-24 mt-3' />
                 </div>
             </div>
-        </div>
+        </CardComp>
     )
 }

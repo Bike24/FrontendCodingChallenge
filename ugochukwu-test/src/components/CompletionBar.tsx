@@ -6,11 +6,11 @@ const CompletionBar = (props: Props) => {
     const { completed } = props;
 
     const containerStyles = {
-        height: 20,
+        height: 25,
         width: '100%',
         backgroundColor: "#e0e0de",
         borderRadius: 50,
-        margin: 50
+        margin: 5
     }
 
     const labelStyles = {

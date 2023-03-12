@@ -2,6 +2,7 @@ import TableComp from './Table';
 import type { RootState } from '../app/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItemFromCart } from '../app/slices/cartSlice';
+import CardComp from './Card';
 
 export default function CartComp() {
     const dispatch = useDispatch();
@@ -10,8 +11,8 @@ export default function CartComp() {
         dispatch(removeItemFromCart(id));
     }
     return (
-        <div className='flex flex-row border-2 mx-96 my-5 p-12'>
+        <CardComp>
             <TableComp onRemoveItem={removeItem} columns={['Product name', 'Unit price', 'Amount', 'Price', 'Action']} data={products} />
-        </div>
+        </CardComp>
     )
 }
