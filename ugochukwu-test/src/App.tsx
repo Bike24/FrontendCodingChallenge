@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { addProducts } from './app/slices/productsSlice';
 import TopComponent from './components/TopComponent';
 import CartComp from './components/CartComp';
+import TotalComponent from './components/TotalComponent';
 
 function App() {
   const dispatch = useDispatch()
@@ -16,6 +17,7 @@ function App() {
     <div>
       <TopComponent />
       <CartComp />
+      <TotalComponent />
     </div>
   );
 }

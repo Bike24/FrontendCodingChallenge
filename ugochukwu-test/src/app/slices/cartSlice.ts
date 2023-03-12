@@ -33,7 +33,7 @@ export const cartSlice = createSlice({
                     if (currentAmount < state.products[index].maxAmount) {
                         state.products[index] = {
                             ...action.payload,
-                            amount: state.products[index].amount + 1
+                            amount: state.products[index].amount + action.payload.amount
                         }
                     }
                 } else {
@@ -44,10 +44,13 @@ export const cartSlice = createSlice({
         },
         removeItemFromCart: (state, action: PayloadAction<string>) => {
             state.products = state.products.filter((product) => product.id !== action.payload);
+        },
+        clearCart: (state) => {
+            state.products = []
         }
     },
 })
 
-export const { addProductToCart, removeItemFromCart } = cartSlice.actions
+export const { addProductToCart, removeItemFromCart, clearCart } = cartSlice.actions
 
 export default cartSlice.reducer
