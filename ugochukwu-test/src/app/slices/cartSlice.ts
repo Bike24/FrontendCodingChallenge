@@ -10,28 +10,42 @@ export interface CartProduct {
     amount: number
 }
 export interface CartState {
-  value: number,
-  products: Array<CartProduct>
+    value: number,
+    products: Array<CartProduct>
 }
 
 const initialState: CartState = {
-  value: 0,
-  products: []
+    value: 0,
+    products: []
 }
 
 export const cartSlice = createSlice({
-  name: 'cart',
-  initialState,
-  reducers: {
-    addProductToCart: (state, action: PayloadAction<CartProduct>) => {
-        if(state.products.length < 10){
-            state.products.push(action.payload);
+    name: 'cart',
+    initialState,
+    reducers: {
+        addProductToCart: (state, action: PayloadAction<CartProduct>) => {
+            const productLength = state.products.reduce((n, {amount}) => n + amount, 0)
+            if (state.products.length < 10 && productLength < 10) {
+                const ids = state.products.map((prod) => prod.id);
+                const index = ids.indexOf(action.payload.id);
+                if (index !== -1) {
+                    const currentAmount = state.products[index].amount
+                    if (currentAmount < state.products[index].maxAmount) {
+                        state.products[index] = {
+                            ...action.payload,
+                            amount: state.products[index].amount + 1
+                        }
+                    }
+                } else {
+                    state.products.push(action.payload);
+                }
+
+            }
+        },
+        removeItemFromCart: (state, action: PayloadAction<string>) => {
+            state.products = state.products.filter((product) => product.id !== action.payload);
         }
     },
-    removeItemFromCart: (state, action: PayloadAction<string>) => {
-        state.products = state.products.filter((product) => product.id !== action.payload);
-    }
-  },
 })
 
 export const { addProductToCart, removeItemFromCart } = cartSlice.actions

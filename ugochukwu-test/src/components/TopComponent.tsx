@@ -28,6 +28,7 @@ export default function TopComponent() {
             const calculatedTotal = price * amount;
             setTotal(parseFloat(calculatedTotal.toFixed(2)));
         }
+        
     }
 
     useEffect(() => {
