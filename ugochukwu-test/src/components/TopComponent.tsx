@@ -36,6 +36,8 @@ export default function TopComponent() {
     }, [currentProduct, amount])
 
     const onItemSelect = (product: string) => {
+        setAmount(0);
+        setTotal(0)
         dispatch(setCurrentProduct(product));
     }
 
