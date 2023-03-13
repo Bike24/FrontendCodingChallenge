@@ -13,6 +13,10 @@ export default function CartSection() {
     return (
         <CardComp>
             <TableComp onRemoveItem={removeItem} columns={['Product name', 'Unit price', 'Amount', 'Price', 'Action']} data={products} />
+            {
+                products.reduce((n, { amount }) => n + amount, 0) === 10 &&
+                <p className='text-red-600'>Cannot have more than 10 products in the cart</p>
+            }
         </CardComp>
     )
 }
