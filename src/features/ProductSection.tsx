@@ -34,7 +34,10 @@ export default function ProductSection() {
     }
 
     useEffect(() => {
-        updateValues();
+        setTimeout(() => {
+            updateValues();
+        }, 1000)
+
     }, [currentProduct, amount])
 
     const onItemSelect = (product: string) => {
