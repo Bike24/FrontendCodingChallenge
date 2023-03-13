@@ -1,10 +1,10 @@
-import TableComp from './Table';
+import TableComp from '../components/Table';
 import type { RootState } from '../app/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItemFromCart } from '../app/slices/cartSlice';
-import CardComp from './Card';
+import CardComp from '../components/Card';
 
-export default function CartComp() {
+export default function CartSection() {
     const dispatch = useDispatch();
     const { products } = useSelector((state: RootState) => state.cart);
     const removeItem = (id: string) => {

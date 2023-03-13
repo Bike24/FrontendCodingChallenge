@@ -14,8 +14,8 @@ interface Props {
 export default function TableComp(prop: Props) {
   const { columns, data, onRemoveItem } = prop;
   return (
-    <div className="w-full">
-      <table width={"100%"} >
+    <div className="wrapper">
+      <table width="100%">
         <thead>
           {
             columns.map((column) => <th align="left">{column}</th>)

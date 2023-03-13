@@ -13,6 +13,6 @@ export default function TextInput(props: Props) {
     }
 
     return (
-        <input value={value} type={inputType === 'number' ? "number" : "text"} className={`border-2 rounded-md outline-none ${extraClasses}`} placeholder={placeholder} onChange={handleChange} />
+        <input value={value} min={0} type={inputType === 'number' ? "number" : "text"} className={`border-2 rounded-md outline-none ${extraClasses}`} placeholder={placeholder} onChange={handleChange} />
     )
 }

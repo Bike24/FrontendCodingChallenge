@@ -9,13 +9,11 @@ export interface Product {
     price: number
 }
 export interface ProductState {
-  value: number,
   products: Array<Product>,
   currentProduct?: Product
 }
 
 const initialState: ProductState = {
-  value: 0,
   products: [],
   currentProduct: undefined
 }

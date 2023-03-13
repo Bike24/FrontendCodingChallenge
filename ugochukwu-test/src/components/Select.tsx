@@ -27,12 +27,11 @@ interface Props {
     options: Array<OptionsProps>,
     label?: string,
     onSelectAction: (product: string) => void;
-    extraClasses?: string;
     containerClass?: string;
 }
 
 export default function SelectComp(props: Props) {
-    const { options, label, onSelectAction } = props;
+    const { options, label, onSelectAction, containerClass } = props;
     const [personName, setPersonName] = React.useState<string>('');
 
     const handleChange = (event: SelectChangeEvent<typeof personName>) => {
@@ -45,11 +44,12 @@ export default function SelectComp(props: Props) {
     };
 
     return (
-        <div>
-            <FormControl sx={{ m: 1, width: 300 }}>
+        <div className={`lg:w-96 xs:w-56 ${containerClass}`}>
+            <FormControl sx={{ width: '100%' }}>
                 <InputLabel id="demo-multiple-checkbox-label">{label}</InputLabel>
                 <Select
                     value={personName}
+                    sx={{ width: "100%" }}
                     onChange={handleChange}
                     input={<OutlinedInput label="Select product" />}
                     renderValue={(selected) => selected}
