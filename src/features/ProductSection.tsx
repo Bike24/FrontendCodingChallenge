@@ -36,7 +36,7 @@ export default function ProductSection() {
     useEffect(() => {
         setTimeout(() => {
             updateValues();
-        }, 1000)
+        }, 500)
 
     }, [currentProduct, amount])
 
