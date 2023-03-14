@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from "react";
 import ButtonComp from '../components/Button';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearCart } from '../app/slices/cartSlice';
-import { toggleshowConfirmStatus, setMessage } from '../app/slices/generalSlice';
-import type { RootState } from '../app/store';
+import { clearCart } from '../redux/slices/cartSlice';
+import { toggleshowConfirmStatus, setMessage } from '../redux/slices/generalSlice';
+import type { RootState } from '../redux/store';
 import CompletionBar from "../components/CompletionBar";
 import CardComp from "../components/Card";
 
@@ -25,7 +25,7 @@ export default function TotalSection() {
         setTotal(amount);
 
         //Calculate percentage completion
-        let percentCompletion = (numberOfProducts / 10) * 100;
+        let percentCompletion = (products.length / 10) * 100;
         if (percentCompletion > 100) {
             percentCompletion = 100;
         }

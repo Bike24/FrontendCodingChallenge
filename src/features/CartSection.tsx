@@ -1,7 +1,7 @@
 import TableComp from '../components/Table';
-import type { RootState } from '../app/store';
+import type { RootState } from '../redux/store';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeItemFromCart } from '../app/slices/cartSlice';
+import { removeItemFromCart } from '../redux/slices/cartSlice';
 import CardComp from '../components/Card';
 
 export default function CartSection() {
@@ -13,10 +13,12 @@ export default function CartSection() {
     return (
         <CardComp>
             <TableComp onRemoveItem={removeItem} columns={['Product name', 'Unit price', 'Amount', 'Price', 'Action']} data={products} />
-            {
-                products.reduce((n, { amount }) => n + amount, 0) === 10 &&
-                <p className='text-red-600'>Cannot have more than 10 products in the cart</p>
-            }
+            <div className='overflow-y-auto w-1/3'>
+                {
+                    products.length >= 10 &&
+                    <p className='text-red-600'>Cannot have more than 10 products in the cart</p>
+                }
+            </div>
         </CardComp>
     )
 }

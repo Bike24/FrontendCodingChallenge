@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Products from './data/products.json';
 import { useDispatch } from 'react-redux';
-import { addProducts } from './app/slices/productsSlice';
+import { addProducts } from './redux/slices/productsSlice';
 import ProductSection from './features/ProductSection';
 import CartSection from './features/CartSection';
 import TotalSection from './features/TotalSection';

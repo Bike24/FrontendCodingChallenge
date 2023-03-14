@@ -24,7 +24,7 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         addProductToCart: (state, action: PayloadAction<CartProduct>) => {
-            const productLength = state.products.reduce((n, {amount}) => n + amount, 0)
+            const productLength = state.products.length;
             if (state.products.length < 10 && productLength < 10) {
                 const ids = state.products.map((prod) => prod.id);
                 const index = ids.indexOf(action.payload.id);

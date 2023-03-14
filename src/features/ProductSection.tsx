@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
-import type { RootState } from '../app/store';
+import type { RootState } from '../redux/store';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCurrentProduct } from '../app/slices/productsSlice';
-import { addProductToCart } from '../app/slices/cartSlice';
+import { setCurrentProduct } from '../redux/slices/productsSlice';
+import { addProductToCart } from '../redux/slices/cartSlice';
 import SliderComp from '../components/Slider';
 import TextInput from '../components/TextInput';
 import ButtonComp from '../components/Button';
@@ -57,15 +57,16 @@ export default function ProductSection() {
     }
 
     const addToCart = () => {
-        if (cart.products.reduce((n, {amount}) => n + amount, 0) >= 10) {
+        if ((cart.products.length + amount) > 10) {
             alert('You can only add a maximum of 10 items to the cart')
+            return;
         }
         if (currentProduct && amount > 0 && amount <= currentProduct.maxAmount) {
             dispatch(addProductToCart({ ...currentProduct, amount: amount }))
         }
     }
 
-    const optionsList2: Options[] = products.map((product) => {
+    const productList: Options[] = products.map((product) => {
         return {
             value: product.id,
             label: product.productName,
@@ -80,7 +81,7 @@ export default function ProductSection() {
                     justifyContent="center"
                     spacing={3} container sx={{ flexDirection: { xs: "column", md: "row" } }}>
                     <Grid item xs={8} sm={8} lg={4}>
-                        <SelectComp options={optionsList2} onSelectAction={onItemSelect} label="Select product" />
+                        <SelectComp options={productList} onSelectAction={onItemSelect} label="Select product" />
                     </Grid>
                     <Grid item xs={8} sm={8} lg={4}>
                         <div className='flex flex-row'>

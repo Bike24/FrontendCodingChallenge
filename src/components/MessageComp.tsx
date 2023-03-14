@@ -1,8 +1,8 @@
 
 import { Snackbar } from "@mui/material";
 import { useSelector, useDispatch } from 'react-redux';
-import type { RootState } from '../app/store';
-import { toggleshowConfirmStatus } from '../app/slices/generalSlice';
+import type { RootState } from '../redux/store';
+import { toggleshowConfirmStatus } from '../redux/slices/generalSlice';
 
 export default function MessageComp() {
     const dispatch = useDispatch();
