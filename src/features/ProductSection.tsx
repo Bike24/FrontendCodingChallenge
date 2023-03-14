@@ -57,7 +57,7 @@ export default function ProductSection() {
     }
 
     const addToCart = () => {
-        if (cart.products.length === 10) {
+        if (cart.products.reduce((n, {amount}) => n + amount, 0) >= 10) {
             alert('You can only add a maximum of 10 items to the cart')
         }
         if (currentProduct && amount > 0 && amount <= currentProduct.maxAmount) {
