@@ -42,13 +42,14 @@ export default function ProductSection() {
 
     const onItemSelect = (product: string) => {
         setAmount(0);
-        setTotal(0)
+        setTotal(0);
+        setWarning('');
         dispatch(setCurrentProduct(product));
     }
 
     const onAmountChange = (amount: number) => {
         if (!currentProduct || Object.keys(currentProduct).length === 0) return
-        if (currentProduct && amount > currentProduct?.maxAmount) {
+        if (amount > currentProduct?.maxAmount) {
             setWarning(`There are only ${currentProduct.maxAmount} item(s) left for this product.`);
             return;
         }
@@ -57,8 +58,10 @@ export default function ProductSection() {
     }
 
     const addToCart = () => {
-        if ((cart.products.length + amount) > 10) {
-            alert('You can only add a maximum of 10 items to the cart')
+        if (!currentProduct || Object.keys(currentProduct).length === 0) return
+        let currentItemNumberInCart = cart.products.filter((product) => product.id === currentProduct.id)[0]?.amount || 0;
+        if ((currentItemNumberInCart + amount) > currentProduct?.maxAmount) {
+            alert('Maximum items exceeded')
             return;
         }
         if (currentProduct && amount > 0 && amount <= currentProduct.maxAmount) {
@@ -89,7 +92,7 @@ export default function ProductSection() {
                             <TextInput value={`${amount}`} inputType="number" onChangeAction={onAmountChange} extraClasses='w-12 h-12 mt-2 mr-5 p-1' />
                             <div className='flex flex-row mr-12 mt-5'>
                                 <small className='mr-2'>X</small>
-                                <p>{total}</p>
+                                <p>€{total}</p>
                             </div>
                         </div>
                     </Grid>

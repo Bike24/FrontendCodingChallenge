@@ -58,7 +58,7 @@ export default function TotalSection() {
             <div className="flex lg:flex-row xs:flex-col lg:justify-between xs:text-center">
                 <ButtonComp onClickAction={clearCartFunction} label='Clear cart' type="default" extraClasses='h-12 lg:mt-20 lg:w-48 xs:w-66' />
                 <div className="flex-col xs:mt-12">
-                    <p className="lg:text-right">${total.toFixed(2)}</p>
+                    <p className="lg:text-right">€{total.toFixed(2)}</p>
                     <div className="flex lg:flex-row xs:flex-col">
                         <div className="flex lg:flex-row xs:flex-col w-full">
                             <div className="lg:w-48 lg:m-5 lg:ml-auto">

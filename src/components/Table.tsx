@@ -26,9 +26,9 @@ export default function TableComp(prop: Props) {
             data.map(({ productName, id, price, amount }) => (
               <tr>
                 <td>{productName}</td>
-                <td>${price}</td>
+                <td>€{price}</td>
                 <td>{amount}</td>
-                <td>${(price * amount).toFixed(2)}</td>
+                <td>€{(price * amount).toFixed(2)}</td>
                 <td><p className="pointer-cursor" onClick={() => onRemoveItem(id)}>Remove</p></td>
               </tr>
             ))

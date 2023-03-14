@@ -13,7 +13,7 @@ export default function CartSection() {
     return (
         <CardComp>
             <TableComp onRemoveItem={removeItem} columns={['Product name', 'Unit price', 'Amount', 'Price', 'Action']} data={products} />
-            <div className='overflow-y-auto w-1/3'>
+            <div className='overflow-y-auto w-1/3 max-h-48'>
                 {
                     products.length >= 10 &&
                     <p className='text-red-600'>Cannot have more than 10 products in the cart</p>

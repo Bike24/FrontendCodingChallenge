@@ -59,7 +59,7 @@ export default function SelectComp(props: Props) {
                         <MenuItem key={value} value={label}>
                             <div className='flex flex-col'>
                                 <ListItemText primary={label} />
-                                <small className='mt-2'>${price}</small>
+                                <small className='mt-2'>€{price}</small>
                             </div>
                         </MenuItem>
                     ))}
